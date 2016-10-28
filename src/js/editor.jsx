@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Settings from './settings';
+import ColorPallet from './colorPallet';
 
 const confirm = window.confirm;
 
@@ -31,6 +32,7 @@ export default class Editor extends React.Component {
         <Settings onChangeSize={this.onChangeSize.bind(this)} size={this.state.size} />
         <div>width: {this.state.size.width}</div>
         <div>height: {this.state.size.height}</div>
+        <ColorPallet />
       </div>
     );
   }
