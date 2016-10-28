@@ -1,8 +1,6 @@
 language: node_js
 node_js:
-  - 5.11
   - 6
-  - 6.1
 sudo: false
 install:
   - npm install
@@ -10,7 +8,7 @@ install:
 script:
   - npm run build
 deploy:
-  - '[ "$TRAVIS_BRANCH" == master ] && [ "$TRAVIS_PULL_REQUEST" == "false" ] && bash ./deploy.sh'
+  - '[ "$TRAVIS_BRANCH" == master ] && [ "$TRAVIS_PULL_REQUEST" == "false" ] && sh ./deploy.sh'
 cache:
   directories:
     - node_modules
