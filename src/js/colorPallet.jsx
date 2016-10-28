@@ -91,6 +91,7 @@ export default class ColorPallet extends React.Component {
     };
     return (
       <div>
+        click to select color and right click to change command base color.
         <table>
           <tbody>
             <tr>
