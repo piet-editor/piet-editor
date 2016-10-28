@@ -1,0 +1,29 @@
+{
+  "name": "piet-editor",
+  "version": "0.0.1",
+  "description": "piet-editor",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "./node_modules/.bin/webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nna774/piet-editor.git"
+  },
+  "keywords": [
+    "piet"
+  ],
+  "author": "NoNameA 774 <nonamea774@gmail.com> (https://nna774.net/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nna774/piet-editor/issues"
+  },
+  "homepage": "https://github.com/nna774/piet-editor#readme",
+  "devDependencies": {
+    "webpack": "^1.13.3"
+  },
+  "dependencies": {
+    "piet-interpreter": "0.0.2"
+  }
+}
