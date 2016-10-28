@@ -76,7 +76,6 @@ export default class ColorPallet extends React.Component {
           style={{ backgroundColor: colorCodes[name] }}
           onClick={this.setColor}
           onContextMenu={this.changeCommandBase}
-          data-name={name}
           data-index={i}
         >
           {commandTable[((i - this.state.commandBase) % 18 + 18) % 18]}
@@ -98,13 +97,13 @@ export default class ColorPallet extends React.Component {
             <tr>
               {lights}
               <td key='white'>
-                <button style={{ backgroundColor: 'white' }} onClick={this.setColor} data-name='white'>white</button>
+                <button style={{ backgroundColor: 'white' }} onClick={this.setColor} data-index='18'>white</button>
               </td>
             </tr>
             <tr>
               {prims}
               <td key='black'>
-                <button style={{ backgroundColor: 'black', color: 'white' }} onClick={this.setColor} data-name='black'>black</button>
+                <button style={{ backgroundColor: 'black', color: 'white' }} onClick={this.setColor} data-index='19'>black</button>
               </td>
             </tr>
             <tr>
