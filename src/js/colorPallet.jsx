@@ -47,6 +47,9 @@ export default class ColorPallet extends React.Component {
       index: 0,
       commandBase: 0,
     };
+
+    this.setColor = this.setColor.bind(this);
+    this.changeCommandBase = this.changeCommandBase.bind(this);
   }
 
   setColor(e) {
@@ -60,29 +63,31 @@ export default class ColorPallet extends React.Component {
   changeCommandBase(e) {
     e.preventDefault();
     const index = e.target.getAttribute('data-index');
-    this.setState({commandBase: index});
+    this.setState({ commandBase: index });
   }
 
   render() {
-    const colorTag = colors.map((name, i) => {
-      return (
-        <td
-          key={name}
-          style={{backgroundColor: colorCodes[name]}}
-          onClick={this.setColor.bind(this)}
-          onContextMenu={this.changeCommandBase.bind(this)}
+    const colorTag = colors.map((name, i) => (
+      <td
+        key={name}
+        style={{ backgroundColor: colorCodes[name] }}
+      >
+        <button
+          onClick={this.setColor}
+          onContextMenu={this.changeCommandBase}
           data-name={name}
-          data-index={i}>
-          {commandTable[((i - this.state.commandBase)%18 + 18)%18]}
-        </td>
-      );
-    });
+          data-index={i}
+        >
+          {commandTable[((i - this.state.commandBase) % 18 + 18) % 18]}
+        </button>
+      </td>
+    ));
     const lights = colorTag.slice(0, 6);
     const prims = colorTag.slice(6, 12);
     const darks = colorTag.slice(12, 18);
     const currentStyle = {
       backgroundColor: colorCodes[this.state.selected],
-      color: this.state.selected === 'black' ? 'white' : 'black'
+      color: this.state.selected === 'black' ? 'white' : 'black',
     };
     return (
       <div>
@@ -90,15 +95,19 @@ export default class ColorPallet extends React.Component {
           <tbody>
             <tr>
               {lights}
-              <td key='white' style={{backgroundColor: 'white'}} onClick={this.setColor.bind(this)} data-name='white'>white</td>
+              <td key='white' style={{ backgroundColor: 'white' }}>
+                <button onClick={this.setColor} data-name='white'>white</button>
+              </td>
             </tr>
             <tr>
               {prims}
-              <td key='black' style={{backgroundColor: 'black', color: 'white'}} onClick={this.setColor.bind(this)} data-name='black'>black</td>
+              <td key='black' style={{ backgroundColor: 'black', color: 'white' }}>
+                <button onClick={this.setColor} data-name='black'>black</button>
+              </td>
             </tr>
             <tr>
               {darks}
-              <td key='selected' style={currentStyle}></td>
+              <td key='selected' style={currentStyle} />
             </tr>
           </tbody>
         </table>
@@ -106,3 +115,7 @@ export default class ColorPallet extends React.Component {
     );
   }
 }
+
+ColorPallet.propTypes = {
+  selectedColor: React.PropTypes.string.isRequired,
+};

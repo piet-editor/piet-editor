@@ -11,10 +11,10 @@ module.exports = {
     "strict": ["error", "function"],
     "arrow-parens": ["error", "always"],
     "arrow-body-style": ["error", "as-needed"],
+    "jsx-quotes": ["error", "prefer-single"],
   },
   env: {
-    node: true,
-    browser: false,
+    browser: true,
     mocha: true,
   },
 }

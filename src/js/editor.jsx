@@ -13,8 +13,11 @@ export default class Editor extends React.Component {
         width: 10,
         height: 10,
       },
-      selectedColor: "lred",
+      selectedColor: 'lred',
     };
+
+    this.onChangeSize = this.onChangeSize.bind(this);
+    this.onChangeSelectedColor = this.onChangeSelectedColor.bind(this);
   }
 
   onChangeSize(s) {
@@ -24,21 +27,24 @@ export default class Editor extends React.Component {
         return;
       }
     }
-    this.setState({size: s});
+    this.setState({ size: s });
   }
 
   onChangeSelectedColor(c) {
-    this.setState({selectedColor: c});
+    this.setState({ selectedColor: c });
   }
 
   render() {
     return (
       <div>
-        <Settings onChangeSize={this.onChangeSize.bind(this)} size={this.state.size} />
+        <Settings onChangeSize={this.onChangeSize} size={this.state.size} />
         <div>width: {this.state.size.width}</div>
         <div>height: {this.state.size.height}</div>
-        <ColorPallet onChangeSelectedColor={this.onChangeSelectedColor.bind(this)} selectedColor={this.state.selectedColor} />
+        <ColorPallet
+          onChangeSelectedColor={this.onChangeSelectedColor}
+          selectedColor={this.state.selectedColor}
+        />
       </div>
     );
   }
-};
+}

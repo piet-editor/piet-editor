@@ -1,8 +1,7 @@
 import React from 'react';
-const ReactDOM = require('react-dom');
-
 import Editor from './editor';
 
+const ReactDOM = require('react-dom');
 const interpreter = require('piet-interpreter');
 
 const code = [
@@ -13,10 +12,10 @@ const code = [
 ];
 
 let world = interpreter.create(code, ['20']);
-let str = "";
+let str = '';
 
-while(!world.halt) {
-  str += (JSON.stringify(world.env) + "\n");
+while (!world.halt) {
+  str += `${JSON.stringify(world.env)}\n`;
   world = interpreter.next(world);
 }
 
