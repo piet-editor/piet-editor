@@ -1,0 +1,16 @@
+language: node_js
+node_js:
+  - 5.11
+  - 6
+  - 6.1
+sudo: false
+install:
+  - npm install
+  - npm run lint
+script:
+  - npm run build
+deploy:
+  - '[ "$TRAVIS_BRANCH" == master ] && [ "$TRAVIS_PULL_REQUEST" == "false" ] && bash ./deploy.sh'
+cache:
+  directories:
+    - node_modules
