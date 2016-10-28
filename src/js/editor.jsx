@@ -12,7 +12,8 @@ export default class Editor extends React.Component {
       size: {
         width: 10,
         height: 10,
-      }
+      },
+      selectedColor: "lred",
     };
   }
 
@@ -26,13 +27,17 @@ export default class Editor extends React.Component {
     this.setState({size: s});
   }
 
+  onChangeSelectedColor(c) {
+    this.setState({selectedColor: c});
+  }
+
   render() {
     return (
       <div>
         <Settings onChangeSize={this.onChangeSize.bind(this)} size={this.state.size} />
         <div>width: {this.state.size.width}</div>
         <div>height: {this.state.size.height}</div>
-        <ColorPallet />
+        <ColorPallet onChangeSelectedColor={this.onChangeSelectedColor.bind(this)} selectedColor={this.state.selectedColor} />
       </div>
     );
   }
