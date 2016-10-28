@@ -2,6 +2,7 @@ import React from 'react';
 
 import Settings from './settings';
 import ColorPallet from './colorPallet';
+import Canvas from './canvas';
 
 const confirm = window.confirm;
 
@@ -42,6 +43,7 @@ export default class Editor extends React.Component {
           onChangeSelectedColor={this.onChangeSelectedColor}
           selectedColor={this.state.selectedColor}
         />
+        <Canvas />
         <div className='debug'>
           <div>width: {this.state.size.width}</div>
           <div>height: {this.state.size.height}</div>
