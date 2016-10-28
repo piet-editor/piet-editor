@@ -87,7 +87,6 @@ export default class ColorPallet extends React.Component {
     const darks = colorTag.slice(12, 18);
     const currentStyle = {
       backgroundColor: colorCodes[this.state.selected],
-      color: this.state.selected === 'black' ? 'white' : 'black',
     };
     return (
       <div>
