@@ -11,7 +11,7 @@ module.exports = {
   },
 
   webpack: {
-    entry: src + '/js/index.js',
+    entry: src + '/js/index.jsx',
     output: {
       filename: 'bundle.js'
     },
@@ -23,6 +23,7 @@ module.exports = {
           loader: 'babel',
           query: {
             plugins: ["transform-react-jsx"],
+            presets: ['react', 'es2015'],
           },
         }
       ]

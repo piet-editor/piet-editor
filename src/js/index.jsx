@@ -1,6 +1,7 @@
-const React = require('react');
+import React from 'react';
 const ReactDOM = require('react-dom');
-const Editor = require('./editor');
+
+import Editor from './editor';
 
 const interpreter = require('piet-interpreter');
 
@@ -23,5 +24,5 @@ document.addEventListener('DOMContentLoaded', () => {
   const editor = document.getElementById('editor');
   const output = document.getElementById('output');
   output.innerText = str;
-  ReactDOM.render(React.createElement(Editor), editor);
+  ReactDOM.render(<Editor />, editor);
 });

@@ -1,25 +1,29 @@
-const React = require('react');
+import React from 'react';
 
-class Editor extends React.Component {
+import Settings from './settings';
+
+export default class Editor extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { clicked: false };
+    this.state = {
+      size: {
+        width: 10,
+        height: 10,
+      }
+    };
   }
 
-  onClick() {
-    this.setState( {
-      clicked: !this.state.clicked,
-    });
-  }
-
-  show() {
-    if (!this.state.clicked) { return "not clicked"; }
-    else { return "clicked"; }
+  changeSize(s) {
+    this.state.size = s;
   }
 
   render() {
-    return <div onClick={ this.onClick.bind(this) } >{this.show()}</div>;
+    return (
+      <div>
+        <Settings onChangeSize={this.changeSize.bind(this)} size={this.state.size} />
+        <div>width: {this.state.size.width}</div>
+        <div>height: {this.state.size.height}</div>
+      </div>
+    );
   }
 };
-
-module.exports = Editor;
