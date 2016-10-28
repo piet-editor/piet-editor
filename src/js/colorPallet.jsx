@@ -58,6 +58,7 @@ export default class ColorPallet extends React.Component {
       selected: colors[index],
       index,
     });
+    this.props.onChangeSelectedColor(colors[index]);
   }
 
   changeCommandBase(e) {
@@ -119,4 +120,5 @@ export default class ColorPallet extends React.Component {
 
 ColorPallet.propTypes = {
   selectedColor: React.PropTypes.string.isRequired,
+  onChangeSelectedColor: React.PropTypes.func.isRequired,
 };
