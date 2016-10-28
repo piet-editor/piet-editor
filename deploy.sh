@@ -2,8 +2,8 @@
 
 cd dist
 
-git config user.email "nonaroid@nna774.net"
-git config user.name "nonaroid on Travis-CI"
+git config --global user.email "nonaroid@nna774.net"
+git config --global user.name "nonaroid on Travis-CI"
 
 git init
 git add .
