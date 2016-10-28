@@ -1,4 +1,4 @@
-const interpreter = require('../../codes/piet-interpreter');
+const interpreter = require('../../../../codes/piet-interpreter');
 
 const code = [
   ['lred', 'dblue', 'dgreen', 'lyellow', 'lmagenta', 'dyellow', 'cyan', 'dred', 'black', 'white', 'dred'],
