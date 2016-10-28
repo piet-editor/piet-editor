@@ -15,9 +15,21 @@ module.exports = {
     output: {
       filename: 'bundle.js'
     },
+    devtool: 'inline-source-map',
+    module: {
+      loaders: [
+        {
+          test: /\.jsx$/,
+          loader: 'babel',
+          query: {
+            plugins: ["transform-react-jsx"],
+          },
+        }
+      ]
+    },
     resolve: {
-      extensions: ['', '.js']
-    }
+      extensions: ['', '.js', '.jsx']
+    },
   },
 
   static: {
