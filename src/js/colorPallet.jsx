@@ -70,9 +70,9 @@ export default class ColorPallet extends React.Component {
     const colorTag = colors.map((name, i) => (
       <td
         key={name}
-        style={{ backgroundColor: colorCodes[name] }}
       >
         <button
+          style={{ backgroundColor: colorCodes[name] }}
           onClick={this.setColor}
           onContextMenu={this.changeCommandBase}
           data-name={name}
@@ -95,14 +95,14 @@ export default class ColorPallet extends React.Component {
           <tbody>
             <tr>
               {lights}
-              <td key='white' style={{ backgroundColor: 'white' }}>
-                <button onClick={this.setColor} data-name='white'>white</button>
+              <td key='white'>
+                <button style={{ backgroundColor: 'white' }} onClick={this.setColor} data-name='white'>white</button>
               </td>
             </tr>
             <tr>
               {prims}
-              <td key='black' style={{ backgroundColor: 'black', color: 'white' }}>
-                <button onClick={this.setColor} data-name='black'>black</button>
+              <td key='black'>
+                <button style={{ backgroundColor: 'black', color: 'white' }} onClick={this.setColor} data-name='black'>black</button>
               </td>
             </tr>
             <tr>
