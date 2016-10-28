@@ -38,12 +38,15 @@ export default class Editor extends React.Component {
     return (
       <div>
         <Settings onChangeSize={this.onChangeSize} size={this.state.size} />
-        <div>width: {this.state.size.width}</div>
-        <div>height: {this.state.size.height}</div>
         <ColorPallet
           onChangeSelectedColor={this.onChangeSelectedColor}
           selectedColor={this.state.selectedColor}
         />
+        <div className='debug'>
+          <div>width: {this.state.size.width}</div>
+          <div>height: {this.state.size.height}</div>
+          <div>selected: {this.state.selectedColor}</div>
+        </div>
       </div>
     );
   }
