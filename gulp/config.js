@@ -1,5 +1,5 @@
-var dest = './dist';
-var src = './src';
+const dest = './dist';
+const src = './src';
 
 module.exports = {
   dest: dest,
@@ -7,13 +7,13 @@ module.exports = {
   js: {
     src: src + '/js/**',
     dest: dest + '/js',
-    uglify: false
+    uglify: false,
   },
 
   webpack: {
     entry: src + '/js/index.jsx',
     output: {
-      filename: 'bundle.js'
+      filename: 'bundle.js',
     },
     devtool: 'inline-source-map',
     module: {
@@ -25,18 +25,18 @@ module.exports = {
             plugins: ["transform-react-jsx"],
             presets: ['react', 'es2015'],
           },
-        }
-      ]
+        },
+      ],
     },
     resolve: {
-      extensions: ['', '.js', '.jsx']
+      extensions: ['', '.js', '.jsx'],
     },
   },
 
   static: {
     src: [
-      src + '/html/index.html'
+      src + '/html/index.html',
     ],
-    dest: dest
+    dest: dest,
   },
-}
+};

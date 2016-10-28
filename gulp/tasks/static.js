@@ -1,12 +1,7 @@
-var gulp = require('gulp');
-var config = require('../config').static;
+const gulp = require('gulp');
+const config = require('../config').static;
 
-gulp.task('static', function () {
+gulp.task('static', () => {
   gulp.src(config.src)
     .pipe(gulp.dest(config.dest));
 });
-
-
-
-
-

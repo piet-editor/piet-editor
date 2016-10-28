@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "./node_modules/.bin/eslint --ignore-pattern '**/node_modules/' --ignore-pattern /dist/ \"**/*.js\" \"**/*.jsx\"",
+    "lint": "./node_modules/.bin/eslint --ignore-pattern '**/node_modules/' --ignore-pattern /gulp/  --ignore-pattern /gulpfile.js --ignore-pattern /dist/ \"**/*.js\" \"**/*.jsx\"",
     "build": "./node_modules/.bin/gulp build"
   },
   "repository": {
