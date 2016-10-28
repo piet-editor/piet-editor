@@ -15,7 +15,7 @@ export default class Editor extends React.Component {
     };
   }
 
-  changeSize(s) {
+  onChangeSize(s) {
     if (s.width < this.state.size.width ||
         s.height < this.state.size.height) {
       if (!confirm('New canvas size is smaller than current size. Are you sure?')) {
@@ -28,7 +28,7 @@ export default class Editor extends React.Component {
   render() {
     return (
       <div>
-        <Settings onChangeSize={this.changeSize.bind(this)} size={this.state.size} />
+        <Settings onChangeSize={this.onChangeSize.bind(this)} size={this.state.size} />
         <div>width: {this.state.size.width}</div>
         <div>height: {this.state.size.height}</div>
       </div>
