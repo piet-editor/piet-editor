@@ -1,4 +1,8 @@
-const interpreter = require('../../../../codes/piet-interpreter');
+const React = require('react');
+const ReactDOM = require('react-dom');
+const Editor = require('./editor');
+
+const interpreter = require('piet-interpreter');
 
 const code = [
   ['lred', 'dblue', 'dgreen', 'lyellow', 'lmagenta', 'dyellow', 'cyan', 'dred', 'black', 'white', 'dred'],
@@ -19,4 +23,5 @@ document.addEventListener('DOMContentLoaded', () => {
   const editor = document.getElementById('editor');
   const output = document.getElementById('output');
   output.innerText = str;
+  ReactDOM.render(React.createElement(Editor), editor);
 });
