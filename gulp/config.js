@@ -36,6 +36,7 @@ module.exports = {
   static: {
     src: [
       src + '/html/index.html',
+      src + '/img/favicon.png',
     ],
     dest: dest,
   },
