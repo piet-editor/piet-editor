@@ -7,7 +7,6 @@ install:
   - npm run lint
 script:
   - npm run build
-deploy:
   - '[ "x$TRAVIS_BRANCH" == "xmaster" ] && [ "x$TRAVIS_PULL_REQUEST" == "xfalse" ] && sh ./deploy.sh'
 cache:
   directories:
