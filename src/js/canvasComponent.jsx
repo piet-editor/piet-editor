@@ -56,6 +56,7 @@ export default class CanvasComponent extends React.Component {
           onMouseDown={this.down}
           onMouseMove={this.move}
           onMouseUp={this.up}
+          onMouseLeave={this.up}
         />
       </div>
     );
