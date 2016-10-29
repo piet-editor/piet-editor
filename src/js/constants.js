@@ -31,7 +31,7 @@ const colorCodes = {
   black: '#000000',
 };
 
-module.exports ={
+module.exports = {
   colors,
   colorCodes,
 };

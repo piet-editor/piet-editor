@@ -4,7 +4,6 @@ import CanvasComponent from './canvasComponent';
 const pixelRate = 25;
 const gridWidth = 2;
 const canvasName = 'canvas';
-const backCanvasName = 'back';
 
 export default class Canvas extends React.Component {
   constructor(props) {
@@ -13,13 +12,6 @@ export default class Canvas extends React.Component {
 
     this.updateCanvas = this.updateCanvas.bind(this);
     this.onChangeCodel = this.onChangeCodel.bind(this);
-  }
-
-  calcSize() {
-    return {
-      width: this.props.size.width * pixelRate + (this.props.size.width + 1) * gridWidth,
-      height: this.props.size.height * pixelRate + (this.props.size.height + 1) * gridWidth,
-    };
   }
 
   drawGrid(ctx) {
@@ -38,6 +30,13 @@ export default class Canvas extends React.Component {
 
   onChangeCodel(codel) {
     this.props.onChangeCodel(codel);
+  }
+
+  calcSize() {
+    return {
+      width: this.props.size.width * pixelRate + (this.props.size.width + 1) * gridWidth,
+      height: this.props.size.height * pixelRate + (this.props.size.height + 1) * gridWidth,
+    };
   }
 
   render() {

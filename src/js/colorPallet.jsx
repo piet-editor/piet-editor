@@ -1,5 +1,5 @@
 import React from 'react';
-import { colors, colorCodes} from './constants';
+import { colors, colorCodes } from './constants';
 
 const commandTable = [
   '*', 'add', 'div', 'great', 'dup', 'in(c)',
