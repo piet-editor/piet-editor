@@ -4,6 +4,7 @@ import Settings from './settings';
 import ColorPallet from './colorPallet';
 import Canvas from './canvas';
 import IO from './io';
+import Interpreter from './interpreter';
 
 const confirm = window.confirm;
 
@@ -31,6 +32,7 @@ export default class Editor extends React.Component {
     this.onChangeSelectedColor = this.onChangeSelectedColor.bind(this);
     this.updateCodel = this.updateCodel.bind(this);
     this.updateInput = this.updateInput.bind(this);
+    this.updateOutput = this.updateOutput.bind(this);
   }
 
   onChangeSize(s) {
@@ -58,6 +60,9 @@ export default class Editor extends React.Component {
   updateInput(input) {
     this.setState({ input });
   }
+  updateOutput(output) {
+    this.setState({ output });
+  }
 
   render() {
     return (
@@ -75,6 +80,11 @@ export default class Editor extends React.Component {
         <IO
           updateInput={this.updateInput}
           output={this.state.output}
+        />
+        <Interpreter
+          input={this.state.input}
+          updateOutput={this.updateOutput}
+          code={this.state.canvas}
         />
         <div className='debug'>
           <div>width: {this.state.size.width}</div>
