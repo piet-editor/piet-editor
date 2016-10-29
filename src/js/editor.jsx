@@ -44,7 +44,7 @@ export default class Editor extends React.Component {
   }
 
   updateCodel(pos) {
-    if (this.state.canvas[pos.Y][pos.X] !== this.state.selectedColor){
+    if (this.state.canvas[pos.Y][pos.X] !== this.state.selectedColor) {
       const newCanvas = Editor.copyCanvas(this.state.canvas);
       newCanvas[pos.Y][pos.X] = this.state.selectedColor;
       this.setState({ canvas: newCanvas });
