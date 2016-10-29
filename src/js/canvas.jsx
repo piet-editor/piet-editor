@@ -21,20 +21,18 @@ export default class Canvas extends React.Component {
     };
   }
 
-  drawGrid(ctx, backCtx) {
+  drawGrid(ctx) {
     const size = this.calcSize();
     for (let i = 0; i < this.props.size.width + 1; ++i) {
-      backCtx.fillRect(i * (pixelRate + gridWidth), 0, gridWidth, size.height);
+      ctx.fillRect(i * (pixelRate + gridWidth), 0, gridWidth, size.height);
     }
     for (let i = 0; i < this.props.size.height + 1; ++i) {
-      backCtx.fillRect(0, i * (pixelRate + gridWidth), size.width, gridWidth);
+      ctx.fillRect(0, i * (pixelRate + gridWidth), size.width, gridWidth);
     }
-    const image = backCtx.getImageData(0, 0, size.width, size.height);
-    ctx.putImageData(image, 0, 0);
   }
 
-  updateCanvas(ctx, backCtx) {
-    this.drawGrid(ctx, backCtx);
+  updateCanvas(ctx) {
+    this.drawGrid(ctx);
   }
 
   render() {
@@ -45,7 +43,6 @@ export default class Canvas extends React.Component {
           width={size.width}
           height={size.height}
           canvasName={canvasName}
-          backCanvasName={backCanvasName}
           updateCanvas={this.updateCanvas}
         />
       </div>
