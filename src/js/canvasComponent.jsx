@@ -1,6 +1,15 @@
 import React from 'react';
 
 export default class CanvasComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+
+    this.down = this.down.bind(this);
+    this.move = this.move.bind(this);
+    this.up = this.up.bind(this);
+  }
+
   componentDidMount() {
     this.updateCanvas();
   }
@@ -21,6 +30,22 @@ export default class CanvasComponent extends React.Component {
     this.props.updateCanvas(context);
   }
 
+  down(e) {
+    this.setState({ drawing: true });
+    const canvas = document.getElementById(this.props.canvasName);
+    const context = canvas.getContext('2d');
+    this.props.updateCanvas(context, e, 'down');
+  }
+  move(e) {
+    if (!this.state.drawing) { return; }
+    const canvas = document.getElementById(this.props.canvasName);
+    const context = canvas.getContext('2d');
+    this.props.updateCanvas(context, e, 'move');
+  }
+  up() {
+    this.setState({ drawing: false });
+  }
+
   render() {
     return (
       <div>
@@ -28,6 +53,9 @@ export default class CanvasComponent extends React.Component {
           id={this.props.canvasName}
           width={this.props.width}
           height={this.props.height}
+          onMouseDown={this.down}
+          onMouseMove={this.move}
+          onMouseUp={this.up}
         />
       </div>
     );

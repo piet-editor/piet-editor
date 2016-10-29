@@ -1,5 +1,7 @@
 import React from 'react';
 import CanvasComponent from './canvasComponent';
+import { colors, colorCodes } from './constants';
+
 
 const pixelRate = 25;
 const gridWidth = 2;
@@ -24,8 +26,28 @@ export default class Canvas extends React.Component {
     }
   }
 
-  updateCanvas(ctx) {
+  getOffset(e) {
+    return {
+      X: e.nativeEvent.offsetX || e.nativeEvent.layerX,
+      Y: e.nativeEvent.offsetY || e.nativeEvent.layerY,
+    };
+  }
+
+  updateCanvas(ctx, e, type) {
+    ctx.strokeStyle = 'black';
     this.drawGrid(ctx);
+    ctx.strokeStyle = colorCodes[this.props.color];
+    if (!!e) {
+      if (type === 'down') {
+        const offsets = this.getOffset(e);
+        ctx.beginPath();
+        ctx.moveTo(offsets.X, offsets.Y);
+      } else if (type === 'move') {
+        const offsets = this.getOffset(e);
+	ctx.lineTo(offsets.X, offsets.Y);
+	ctx.stroke();
+      }
+    }
   }
 
   onChangeCodel(codel) {
