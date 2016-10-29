@@ -19,6 +19,7 @@ export default class Editor extends React.Component {
 
     this.onChangeSize = this.onChangeSize.bind(this);
     this.onChangeSelectedColor = this.onChangeSelectedColor.bind(this);
+    this.onChangeCodel = this.onChangeCodel.bind(this);
   }
 
   onChangeSize(s) {
@@ -35,6 +36,10 @@ export default class Editor extends React.Component {
     this.setState({ selectedColor: c });
   }
 
+  onChangeCodel(codel) {
+    this.setState({ codel });
+  }
+
   render() {
     return (
       <div>
@@ -43,7 +48,7 @@ export default class Editor extends React.Component {
           onChangeSelectedColor={this.onChangeSelectedColor}
           selectedColor={this.state.selectedColor}
         />
-        <Canvas size={this.state.size} color={this.state.selectedColor} />
+        <Canvas size={this.state.size} onChangeCodel={this.onChangeCodel} color={this.state.selectedColor} />
         <div className='debug'>
           <div>width: {this.state.size.width}</div>
           <div>height: {this.state.size.height}</div>

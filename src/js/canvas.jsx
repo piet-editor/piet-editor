@@ -12,6 +12,7 @@ export default class Canvas extends React.Component {
     this.state = {};
 
     this.updateCanvas = this.updateCanvas.bind(this);
+    this.onChangeCodel = this.onChangeCodel.bind(this);
   }
 
   calcSize() {
@@ -35,6 +36,10 @@ export default class Canvas extends React.Component {
     this.drawGrid(ctx);
   }
 
+  onChangeCodel(codel) {
+    this.props.onChangeCodel(codel);
+  }
+
   render() {
     const size = this.calcSize();
     return (
@@ -44,6 +49,7 @@ export default class Canvas extends React.Component {
           height={size.height}
           canvasName={canvasName}
           updateCanvas={this.updateCanvas}
+          onChangeCodel={this.onChangeCodel}
           color={this.props.color}
         />
       </div>
@@ -56,5 +62,6 @@ Canvas.propTypes = {
     width: React.PropTypes.number.isRequired,
     height: React.PropTypes.number.isRequired,
   }),
+  onChangeCodel: React.PropTypes.func.isRequired,
   color: React.PropTypes.string.isRequired,
 };
