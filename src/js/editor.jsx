@@ -68,6 +68,7 @@ export default class Editor extends React.Component {
           <div>width: {this.state.size.width}</div>
           <div>height: {this.state.size.height}</div>
           <div>selected: {this.state.selectedColor}</div>
+          <div>canvas: {JSON.stringify(this.state.canvas)}</div>
         </div>
       </div>
     );
