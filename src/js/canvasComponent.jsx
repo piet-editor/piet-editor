@@ -39,4 +39,5 @@ CanvasComponent.propTypes = {
   height: React.PropTypes.number.isRequired,
   canvasName: React.PropTypes.string.isRequired,
   updateCanvas: React.PropTypes.func.isRequired,
+  color: React.PropTypes.string.isRequired,
 };

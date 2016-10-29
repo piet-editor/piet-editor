@@ -43,7 +43,7 @@ export default class Editor extends React.Component {
           onChangeSelectedColor={this.onChangeSelectedColor}
           selectedColor={this.state.selectedColor}
         />
-        <Canvas size={this.state.size} />
+        <Canvas size={this.state.size} color={this.state.selectedColor} />
         <div className='debug'>
           <div>width: {this.state.size.width}</div>
           <div>height: {this.state.size.height}</div>

@@ -44,6 +44,7 @@ export default class Canvas extends React.Component {
           height={size.height}
           canvasName={canvasName}
           updateCanvas={this.updateCanvas}
+          color={this.props.color}
         />
       </div>
     );
@@ -55,4 +56,5 @@ Canvas.propTypes = {
     width: React.PropTypes.number.isRequired,
     height: React.PropTypes.number.isRequired,
   }),
+  color: React.PropTypes.string.isRequired,
 };
