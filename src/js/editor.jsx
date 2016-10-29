@@ -7,6 +7,10 @@ import Canvas from './canvas';
 const confirm = window.confirm;
 
 export default class Editor extends React.Component {
+  static copyCanvas(canvas) {
+    return JSON.parse(JSON.stringify(canvas));
+  }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -15,11 +19,14 @@ export default class Editor extends React.Component {
         height: 10,
       },
       selectedColor: 'lred',
+      canvas: new Array(10).fill(
+        new Array(10).fill('white')
+      ),
     };
 
     this.onChangeSize = this.onChangeSize.bind(this);
     this.onChangeSelectedColor = this.onChangeSelectedColor.bind(this);
-    this.onChangeCodel = this.onChangeCodel.bind(this);
+    this.updateCodel = this.updateCodel.bind(this);
   }
 
   onChangeSize(s) {
@@ -36,8 +43,12 @@ export default class Editor extends React.Component {
     this.setState({ selectedColor: c });
   }
 
-  onChangeCodel(codel) {
-    this.setState({ codel });
+  updateCodel(pos) {
+    if (this.state.canvas[pos.Y][pos.X] !== this.state.selectedColor){
+      const newCanvas = Editor.copyCanvas(this.state.canvas);
+      newCanvas[pos.Y][pos.X] = this.state.selectedColor;
+      this.setState({ canvas: newCanvas });
+    }
   }
 
   render() {
@@ -50,7 +61,7 @@ export default class Editor extends React.Component {
         />
         <Canvas
           size={this.state.size}
-          onChangeCodel={this.onChangeCodel}
+          updateCodel={this.updateCodel}
           color={this.state.selectedColor}
         />
         <div className='debug'>

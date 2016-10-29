@@ -26,11 +26,6 @@ export default class Canvas extends React.Component {
     this.state = {};
 
     this.updateCanvas = this.updateCanvas.bind(this);
-    this.onChangeCodel = this.onChangeCodel.bind(this);
-  }
-
-  onChangeCodel(codel) {
-    this.props.onChangeCodel(codel);
   }
 
   updateCanvas(ctx, e, type) {
@@ -41,6 +36,7 @@ export default class Canvas extends React.Component {
       if (type === 'down' || type === 'move') {
         const offsets = Canvas.getOffset(e);
         const pos = Canvas.getCodelOffset(offsets);
+        this.updateCodel(pos);
         this.fillCodel(ctx, pos);
       }
     }
@@ -72,6 +68,10 @@ export default class Canvas extends React.Component {
     ctx.fillRect(pos.X * oneCodel + gridWidth, pos.Y * oneCodel + gridWidth, pixelRate, pixelRate);
   }
 
+  updateCodel(pos) {
+    this.props.updateCodel(pos);
+  }
+
   render() {
     const size = this.calcSize();
     return (
@@ -92,6 +92,6 @@ Canvas.propTypes = {
     width: React.PropTypes.number.isRequired,
     height: React.PropTypes.number.isRequired,
   }),
-  onChangeCodel: React.PropTypes.func.isRequired,
+  updateCodel: React.PropTypes.func.isRequired,
   color: React.PropTypes.string.isRequired,
 };
