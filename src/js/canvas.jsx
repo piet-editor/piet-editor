@@ -1,5 +1,6 @@
 import React from 'react';
 import CanvasComponent from './canvasComponent';
+
 const pixelRate = 10;
 const gridWidth = 1;
 const canvasName = 'canvas';
@@ -51,3 +52,10 @@ export default class Canvas extends React.Component {
     );
   }
 }
+
+Canvas.propTypes = {
+  size: React.PropTypes.shape({
+    width: React.PropTypes.number.isRequired,
+    height: React.PropTypes.number.isRequired,
+  }),
+};

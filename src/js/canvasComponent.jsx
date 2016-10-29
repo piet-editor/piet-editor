@@ -1,10 +1,6 @@
 import React from 'react';
 
 export default class CanvasComponent extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
     this.updateCanvas();
   }
@@ -42,7 +38,7 @@ export default class CanvasComponent extends React.Component {
           style={{ display: 'none' }}
         />
       </div>
-    )
+    );
   }
 }
 
