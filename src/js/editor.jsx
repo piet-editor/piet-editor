@@ -3,6 +3,7 @@ import React from 'react';
 import Settings from './settings';
 import ColorPallet from './colorPallet';
 import Canvas from './canvas';
+import IO from './io';
 
 const confirm = window.confirm;
 
@@ -22,11 +23,14 @@ export default class Editor extends React.Component {
       canvas: new Array(10).fill(
         new Array(10).fill('white')
       ),
+      input: '',
+      output: '',
     };
 
     this.onChangeSize = this.onChangeSize.bind(this);
     this.onChangeSelectedColor = this.onChangeSelectedColor.bind(this);
     this.updateCodel = this.updateCodel.bind(this);
+    this.updateInput = this.updateInput.bind(this);
   }
 
   onChangeSize(s) {
@@ -51,6 +55,10 @@ export default class Editor extends React.Component {
     }
   }
 
+  updateInput(input) {
+    this.setState({ input });
+  }
+
   render() {
     return (
       <div>
@@ -63,6 +71,10 @@ export default class Editor extends React.Component {
           size={this.state.size}
           updateCodel={this.updateCodel}
           color={this.state.selectedColor}
+        />
+        <IO
+          updateInput={this.updateInput}
+          output={this.state.output}
         />
         <div className='debug'>
           <div>width: {this.state.size.width}</div>
