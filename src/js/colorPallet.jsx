@@ -107,7 +107,9 @@ export default class ColorPallet extends React.Component {
             </tr>
             <tr>
               {darks}
-              <td key='selected' style={currentStyle} />
+              <td key='selected'>
+                <button style={currentStyle} onClick={this.changeCommandBase} data-index={this.state.index}>*</button>
+              </td>
             </tr>
           </tbody>
         </table>
