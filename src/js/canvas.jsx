@@ -1,8 +1,8 @@
 import React from 'react';
 import CanvasComponent from './canvasComponent';
 
-const pixelRate = 10;
-const gridWidth = 1;
+const pixelRate = 25;
+const gridWidth = 2;
 const canvasName = 'canvas';
 const backCanvasName = 'back';
 
