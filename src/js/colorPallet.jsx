@@ -64,19 +64,37 @@ export default class ColorPallet extends React.Component {
             <tr>
               {lights}
               <td key='white'>
-                <button style={{ backgroundColor: 'white' }} onClick={this.setColor} data-index='18'>white</button>
+                <button
+                  style={{ backgroundColor: 'white' }}
+                  onClick={this.setColor}
+                  data-index='18'
+                >
+                  white
+                </button>
               </td>
             </tr>
             <tr>
               {prims}
               <td key='black'>
-                <button style={{ backgroundColor: 'black', color: 'white' }} onClick={this.setColor} data-index='19'>black</button>
+                <button
+                  style={{ backgroundColor: 'black', color: 'white' }}
+                  onClick={this.setColor}
+                  data-index='19'
+                >
+                  black
+                </button>
               </td>
             </tr>
             <tr>
               {darks}
               <td key='selected'>
-                <button style={currentStyle} onClick={this.changeCommandBase} data-index={this.state.index}>*</button>
+                <button
+                  style={currentStyle}
+                  onClick={this.changeCommandBase}
+                  data-index={this.state.index}
+                >
+                  *
+                </button>
               </td>
             </tr>
           </tbody>
