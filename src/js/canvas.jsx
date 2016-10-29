@@ -14,6 +14,13 @@ export default class Canvas extends React.Component {
     };
   }
 
+  static getCodelOffset(offsets) {
+    return {
+      X: (offsets.X / (pixelRate + gridWidth)) | 0,
+      Y: (offsets.Y / (pixelRate + gridWidth)) | 0,
+    };
+  }
+
   constructor(props) {
     super(props);
     this.state = {};
@@ -57,18 +64,12 @@ export default class Canvas extends React.Component {
     };
   }
 
-  static getCodelOffset(offsets) {
-    return {
-      X: (offsets.X / (pixelRate + gridWidth))|0,
-      Y: (offsets.Y / (pixelRate + gridWidth))|0,
-    };
-  }
-
   fillCodel(ctx, pos) {
     if (pos.X < 0 || pos.Y < 0) { return; }
     const color = colorCodes[this.props.color];
+    const oneCodel = pixelRate + gridWidth;
     ctx.fillStyle = color;
-    ctx.fillRect(pos.X * (pixelRate + gridWidth) + gridWidth, pos.Y * (pixelRate + gridWidth) + gridWidth, pixelRate, pixelRate);
+    ctx.fillRect(pos.X * oneCodel + gridWidth, pos.Y * oneCodel + gridWidth, pixelRate, pixelRate);
   }
 
   render() {
