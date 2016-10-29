@@ -80,8 +80,6 @@ export default class Canvas extends React.Component {
           height={size.height}
           canvasName={canvasName}
           updateCanvas={this.updateCanvas}
-          onChangeCodel={this.onChangeCodel}
-          color={this.props.color}
         />
       </div>
     );
