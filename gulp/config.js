@@ -37,6 +37,7 @@ module.exports = {
     src: [
       src + '/html/index.html',
       src + '/img/favicon.png',
+      src + '/img/ogp.png',
     ],
     dest: dest,
   },
