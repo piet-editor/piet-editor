@@ -2,7 +2,6 @@ import React from 'react';
 import CanvasComponent from './canvasComponent';
 import { colorCodes } from './constants';
 
-
 const pixelRate = 25;
 const gridWidth = 2;
 const canvasName = 'canvas';
@@ -32,19 +31,16 @@ export default class Canvas extends React.Component {
     this.drawGrid(ctx);
     ctx.strokeStyle = colorCodes[this.props.color];
     if (e) {
-      if (type === 'down') {
+      if (type === 'down' || type === 'move') {
         const offsets = Canvas.getOffset(e);
-        ctx.beginPath();
-        ctx.moveTo(offsets.X, offsets.Y);
-      } else if (type === 'move') {
-        const offsets = Canvas.getOffset(e);
-        ctx.lineTo(offsets.X, offsets.Y);
-        ctx.stroke();
+        const pos = Canvas.getCodelOffset(offsets);
+        this.fillCodel(ctx, pos);
       }
     }
   }
 
   drawGrid(ctx) {
+    ctx.fillStyle = 'black';
     const size = this.calcSize();
     for (let i = 0; i < this.props.size.width + 1; ++i) {
       ctx.fillRect(i * (pixelRate + gridWidth), 0, gridWidth, size.height);
@@ -59,6 +55,20 @@ export default class Canvas extends React.Component {
       width: this.props.size.width * pixelRate + (this.props.size.width + 1) * gridWidth,
       height: this.props.size.height * pixelRate + (this.props.size.height + 1) * gridWidth,
     };
+  }
+
+  static getCodelOffset(offsets) {
+    return {
+      X: (offsets.X / (pixelRate + gridWidth))|0,
+      Y: (offsets.Y / (pixelRate + gridWidth))|0,
+    };
+  }
+
+  fillCodel(ctx, pos) {
+    if (pos.X < 0 || pos.Y < 0) { return; }
+    const color = colorCodes[this.props.color];
+    ctx.fillStyle = color;
+    ctx.fillRect(pos.X * (pixelRate + gridWidth) + gridWidth, pos.Y * (pixelRate + gridWidth) + gridWidth, pixelRate, pixelRate);
   }
 
   render() {
