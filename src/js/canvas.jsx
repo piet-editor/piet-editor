@@ -1,6 +1,6 @@
 import React from 'react';
 import CanvasComponent from './canvasComponent';
-import { colors, colorCodes } from './constants';
+import { colorCodes } from './constants';
 
 
 const pixelRate = 25;
@@ -8,12 +8,40 @@ const gridWidth = 2;
 const canvasName = 'canvas';
 
 export default class Canvas extends React.Component {
+  static getOffset(e) {
+    return {
+      X: e.nativeEvent.offsetX || e.nativeEvent.layerX,
+      Y: e.nativeEvent.offsetY || e.nativeEvent.layerY,
+    };
+  }
+
   constructor(props) {
     super(props);
     this.state = {};
 
     this.updateCanvas = this.updateCanvas.bind(this);
     this.onChangeCodel = this.onChangeCodel.bind(this);
+  }
+
+  onChangeCodel(codel) {
+    this.props.onChangeCodel(codel);
+  }
+
+  updateCanvas(ctx, e, type) {
+    ctx.strokeStyle = 'black';
+    this.drawGrid(ctx);
+    ctx.strokeStyle = colorCodes[this.props.color];
+    if (e) {
+      if (type === 'down') {
+        const offsets = Canvas.getOffset(e);
+        ctx.beginPath();
+        ctx.moveTo(offsets.X, offsets.Y);
+      } else if (type === 'move') {
+        const offsets = Canvas.getOffset(e);
+        ctx.lineTo(offsets.X, offsets.Y);
+        ctx.stroke();
+      }
+    }
   }
 
   drawGrid(ctx) {
@@ -24,34 +52,6 @@ export default class Canvas extends React.Component {
     for (let i = 0; i < this.props.size.height + 1; ++i) {
       ctx.fillRect(0, i * (pixelRate + gridWidth), size.width, gridWidth);
     }
-  }
-
-  getOffset(e) {
-    return {
-      X: e.nativeEvent.offsetX || e.nativeEvent.layerX,
-      Y: e.nativeEvent.offsetY || e.nativeEvent.layerY,
-    };
-  }
-
-  updateCanvas(ctx, e, type) {
-    ctx.strokeStyle = 'black';
-    this.drawGrid(ctx);
-    ctx.strokeStyle = colorCodes[this.props.color];
-    if (!!e) {
-      if (type === 'down') {
-        const offsets = this.getOffset(e);
-        ctx.beginPath();
-        ctx.moveTo(offsets.X, offsets.Y);
-      } else if (type === 'move') {
-        const offsets = this.getOffset(e);
-	ctx.lineTo(offsets.X, offsets.Y);
-	ctx.stroke();
-      }
-    }
-  }
-
-  onChangeCodel(codel) {
-    this.props.onChangeCodel(codel);
   }
 
   calcSize() {
