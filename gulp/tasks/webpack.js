@@ -1,7 +1,7 @@
 const gulp = require('gulp');
 const gulpif = require('gulp-if');
 const uglify = require('gulp-uglify');
-const webpack = require('gulp-webpack');
+const webpack = require('webpack-stream');
 const config = require('../config');
 
 gulp.task('webpack', () => {
