@@ -5,6 +5,7 @@ import ColorPallet from './colorPallet';
 import Canvas from './canvas';
 import IO from './io';
 import Interpreter from './interpreter';
+import Share from './share';
 
 const confirm = window.confirm;
 
@@ -21,8 +22,8 @@ export default class Editor extends React.Component {
         height: 10,
       },
       selectedColor: 'lred',
-      canvas: new Array(10).fill(
-        new Array(10).fill('white')
+      canvas: this.props.code || Array(10).fill(
+        Array(10).fill('white')
       ),
       input: '',
       output: '',
@@ -50,9 +51,9 @@ export default class Editor extends React.Component {
   }
 
   updateCodel(pos) {
-    if (this.state.canvas[pos.Y][pos.X] !== this.state.selectedColor) {
+    if (this.state.canvas[pos.X][pos.Y] !== this.state.selectedColor) {
       const newCanvas = Editor.copyCanvas(this.state.canvas);
-      newCanvas[pos.Y][pos.X] = this.state.selectedColor;
+      newCanvas[pos.X][pos.Y] = this.state.selectedColor;
       this.setState({ canvas: newCanvas });
     }
   }
@@ -76,6 +77,7 @@ export default class Editor extends React.Component {
           size={this.state.size}
           updateCodel={this.updateCodel}
           color={this.state.selectedColor}
+          code={this.state.canvas}
         />
         <IO
           updateInput={this.updateInput}
@@ -84,6 +86,9 @@ export default class Editor extends React.Component {
         <Interpreter
           input={this.state.input}
           updateOutput={this.updateOutput}
+        />
+        <Share
+          size={this.state.size}
           code={this.state.canvas}
         />
         <div className='debug'>

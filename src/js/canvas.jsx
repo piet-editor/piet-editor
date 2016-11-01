@@ -9,8 +9,9 @@ const canvasName = 'canvas';
 export default class Canvas extends React.Component {
   static getOffset(e) {
     return {
-      X: e.nativeEvent.offsetX || e.nativeEvent.layerX,
-      Y: e.nativeEvent.offsetY || e.nativeEvent.layerY,
+      // ブラウザと座標系の取り方が違う。
+      X: e.nativeEvent.offsetY || e.nativeEvent.layerY,
+      Y: e.nativeEvent.offsetX || e.nativeEvent.layerX,
     };
   }
 
@@ -32,12 +33,20 @@ export default class Canvas extends React.Component {
     ctx.strokeStyle = 'black';
     this.drawGrid(ctx);
     ctx.strokeStyle = colorCodes[this.props.color];
+    if (type === 'mount') {
+      for (let i = 0; i < this.props.size.height; ++i) {
+        for (let j = 0; j < this.props.size.width; ++j) {
+          const pos = { X: i, Y: j };
+          this.fillCodel(ctx, pos, this.props.code[i][j]);
+        }
+      }
+    }
     if (e) {
       if (type === 'down' || type === 'move') {
         const offsets = Canvas.getOffset(e);
         const pos = Canvas.getCodelOffset(offsets);
         this.updateCodel(pos);
-        this.fillCodel(ctx, pos);
+        this.fillCodel(ctx, pos, this.props.color);
       }
     }
   }
@@ -60,12 +69,12 @@ export default class Canvas extends React.Component {
     };
   }
 
-  fillCodel(ctx, pos) {
+  fillCodel(ctx, pos, c) {
     if (pos.X < 0 || pos.Y < 0) { return; }
-    const color = colorCodes[this.props.color];
+    const color = colorCodes[c];
     const oneCodel = pixelRate + gridWidth;
     ctx.fillStyle = color;
-    ctx.fillRect(pos.X * oneCodel + gridWidth, pos.Y * oneCodel + gridWidth, pixelRate, pixelRate);
+    ctx.fillRect(pos.Y * oneCodel + gridWidth, pos.X * oneCodel + gridWidth, pixelRate, pixelRate);
   }
 
   updateCodel(pos) {

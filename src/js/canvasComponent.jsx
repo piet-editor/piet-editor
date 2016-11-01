@@ -11,7 +11,7 @@ export default class CanvasComponent extends React.Component {
   }
 
   componentDidMount() {
-    this.updateCanvas();
+    this.updateCanvas('mount');
   }
 
   componentWillReceiveProps(nextProps) {
@@ -24,10 +24,10 @@ export default class CanvasComponent extends React.Component {
     this.updateCanvas();
   }
 
-  updateCanvas() {
+  updateCanvas(type) {
     const canvas = document.getElementById(this.props.canvasName);
     const context = canvas.getContext('2d');
-    this.props.updateCanvas(context);
+    this.props.updateCanvas(context, null, type);
   }
 
   down(e) {
