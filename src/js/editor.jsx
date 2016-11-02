@@ -113,5 +113,5 @@ export default class Editor extends React.Component {
 Editor.propTypes = {
   code: React.PropTypes.arrayOf(
     React.PropTypes.arrayOf(React.PropTypes.string)
-  ).isRequired,
+  ),
 };
