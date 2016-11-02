@@ -1,4 +1,6 @@
 import React from 'react';
+import gzip from 'gzip-js';
+import base64 from 'base64-js';
 
 const colorTable = {
   lred: 'a',
@@ -28,7 +30,8 @@ const colorTable = {
 
 export default class Share extends React.Component {
   static codeText(code) {
-    return code.map((row) => row.map((c) => colorTable[c]).join('')).join('|');
+    const orig = code.map((row) => row.map((c) => colorTable[c]).join('')).join('|');
+    return base64.fromByteArray(gzip.zip(orig, { level: 9 })).replace(/=/g, '@').replace(/\+/g, '-').replace(/\//g, '_');
   }
 
   constructor(props) {

@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Editor from './editor';
+import gzip from 'gzip-js';
+import base64 from 'base64-js';
 
 const colorTable = {
   a: 'lred',
@@ -39,10 +41,15 @@ for (const h in hashs) {
     vals[k] = v;
   }
 }
+
 let code;
 try {
-  code = vals.code.split('|').map((row) => row.split('').map((v) => colorTable[v]));
-} catch (e) {}
+  code = gzip.unzip(base64.toByteArray(vals.code.replace(/_/g, '/').replace(/-/g, '+').replace(/@/g, '=')));
+  code = String.fromCharCode.apply("", new Uint16Array(code));
+  code = code.split('|').map((row) => row.split('').map((v) => colorTable[v]));
+} catch (e) {
+  console.log(e)
+}
 
 document.addEventListener('DOMContentLoaded', () => {
   const editor = document.getElementById('editor');
