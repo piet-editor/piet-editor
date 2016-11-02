@@ -18,17 +18,21 @@ export default class Editor extends React.Component {
     super(props);
     this.state = {
       size: {
-        width: 10,
-        height: 10,
+        width: this.props.width || 10,
+        height: this.props.height || 10,
       },
       selectedColor: 'lred',
-      canvas: this.props.code || Array(10).fill(
-        Array(10).fill('white')
-      ),
+      canvas: this.props.code,
       input: '',
       output: '',
       current: { X: 0, Y: 0 },
     };
+    if (!this.state.canvas) {
+      this.state.canvas = Array(this.props.size.height);
+      for (let i = 0; i < this.props.size.height; ++i) {
+        this.state.canvas[i] = Array(this.props.width).fill('white');
+      }
+    }
 
     this.onChangeSize = this.onChangeSize.bind(this);
     this.onChangeSelectedColor = this.onChangeSelectedColor.bind(this);
@@ -46,6 +50,24 @@ export default class Editor extends React.Component {
       }
     }
     this.setState({ size: s });
+    if (s.width > this.state.size.width) {
+      const diff = s.width - this.state.size.width;
+      let newCanvas = Editor.copyCanvas(this.state.canvas);
+      for (let i = 0; i < this.state.size.height; ++i) {
+        for (let j = 0; j < diff; ++j) {
+          newCanvas[i].push('white');
+        }
+      }
+      this.setState({ canvas: newCanvas });
+    }
+    if (s.height > this.state.size.height) {
+      const diff = s.height - this.state.size.height;
+      let newCanvas = Editor.copyCanvas(this.state.canvas);
+      for (let i = 0; i < diff; ++i) {
+        newCanvas.push(Array(this.state.size.width).fill('white'));
+      }
+      this.setState({ canvas: newCanvas });
+    }
   }
 
   onChangeSelectedColor(c) {
@@ -112,6 +134,8 @@ export default class Editor extends React.Component {
 }
 
 Editor.propTypes = {
+  width: React.PropTypes.number.isRequired,
+  height: React.PropTypes.number.isRequired,
   code: React.PropTypes.arrayOf(
     React.PropTypes.arrayOf(React.PropTypes.string)
   ),
