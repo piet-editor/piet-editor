@@ -36,6 +36,7 @@ export default class ColorPallet extends React.Component {
   }
 
   render() {
+    const commandBase = this.state.commandBase;
     const colorTag = colors.map((name, i) => (
       <td
         key={name}
@@ -46,7 +47,7 @@ export default class ColorPallet extends React.Component {
           onContextMenu={this.changeCommandBase}
           data-index={i}
         >
-          {commandTable[((i - this.state.commandBase) % 18 + 18) % 18]}
+          {commandTable[((i % 6 - commandBase % 6 + 6) % 6 + 6 * Math.floor( i / 6) + (3- Math.floor(commandBase/6)) * 6 + 18)%18]}
         </button>
       </td>
     ));
