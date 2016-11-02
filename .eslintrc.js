@@ -12,6 +12,7 @@ module.exports = {
     "arrow-parens": ["error", "always"],
     "arrow-body-style": ["error", "as-needed"],
     "jsx-quotes": ["error", "prefer-single"],
+    "react/no-unused-prop-types": ["error", { "skipShapeProps": true }],
   },
   env: {
     browser: true,
