@@ -23,7 +23,7 @@ export default class Interpreter extends React.Component {
   run() {
     for (let i = 0; i < this.props.infinity; ++i) {
       this.step();
-      if (this.state.world.env.halt) {
+      if (this.state.world.halt) {
         break;
       }
     }
@@ -46,11 +46,13 @@ export default class Interpreter extends React.Component {
         </button>
         <button
           onClick={this.run}
+          disabled={this.state.world.halt}
         >
           run
         </button>
         <button
           onClick={this.step}
+          disabled={this.state.world.halt}
         >
           step
         </button>
@@ -61,6 +63,9 @@ export default class Interpreter extends React.Component {
             >
               continue
             </button>)
+        }
+        {
+          this.state.world.halt ? <div>halted</div> : null
         }
       </div>
     );
