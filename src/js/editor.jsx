@@ -28,9 +28,9 @@ export default class Editor extends React.Component {
       current: { X: 0, Y: 0 },
     };
     if (!this.state.canvas) {
-      this.state.canvas = Array(this.props.height);
-      for (let i = 0; i < this.props.height; ++i) {
-        this.state.canvas[i] = Array(this.props.width).fill('white');
+      this.state.canvas = Array(this.state.size.height);
+      for (let i = 0; i < this.state.size.height; ++i) {
+        this.state.canvas[i] = Array(this.state.size.width).fill('white');
       }
     }
 
