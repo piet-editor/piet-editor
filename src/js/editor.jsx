@@ -59,12 +59,28 @@ export default class Editor extends React.Component {
         }
       }
       this.setState({ canvas: newCanvas });
+    } else {
+      const diff = this.state.size.width - s.width;
+      const newCanvas = Editor.copyCanvas(this.state.canvas);
+      for (let i = 0; i < this.state.size.height; ++i) {
+        for (let j = 0; j < diff; ++j) {
+          newCanvas[i].pop();
+        }
+      }
+      this.setState({ canvas: newCanvas });
     }
     if (s.height > this.state.size.height) {
       const diff = s.height - this.state.size.height;
       const newCanvas = Editor.copyCanvas(this.state.canvas);
       for (let i = 0; i < diff; ++i) {
         newCanvas.push(Array(this.state.size.width).fill('white'));
+      }
+      this.setState({ canvas: newCanvas });
+    } else {
+      const diff = this.state.size.height - s.height;
+      const newCanvas = Editor.copyCanvas(this.state.canvas);
+      for (let i = 0; i < diff; ++i) {
+        newCanvas.pop();
       }
       this.setState({ canvas: newCanvas });
     }
