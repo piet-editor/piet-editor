@@ -39,10 +39,10 @@ for (const h in hashs) {
     vals[k] = v;
   }
 }
-let code = undefined;
+let code;
 try {
   code = vals.code.split('|').map((row) => row.split('').map((v) => colorTable[v]));
-} catch(e) {}
+} catch (e) {}
 
 document.addEventListener('DOMContentLoaded', () => {
   const editor = document.getElementById('editor');

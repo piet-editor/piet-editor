@@ -4,6 +4,7 @@ module.exports = {
     "no-console": "off",
     "no-mixed-operators": "off",
     "no-bitwise": "off",
+    "no-empty": ["error", { "allowEmptyCatch": true }],
     "no-plusplus": "off",
     "no-continue": "off",
     "no-param-reassign": "off",
