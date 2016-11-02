@@ -31,6 +31,7 @@ export default class Canvas extends React.Component {
   }
 
   static pointCurrentCodel(ctx, pos) {
+    ctx.fillStyle = 'black';
     // ここも座標系が逆
     const x = (pixelRate + gridWidth) * pos.Y + gridWidth + pixelRate / 2;
     const y = (pixelRate + gridWidth) * pos.X + gridWidth + pixelRate / 2;
@@ -46,27 +47,31 @@ export default class Canvas extends React.Component {
     this.updateCanvas = this.updateCanvas.bind(this);
   }
 
+  drawCurrentCanvas(ctx) {
+    for (let i = 0; i < this.props.size.height; ++i) {
+      for (let j = 0; j < this.props.size.width; ++j) {
+        const pos = { X: i, Y: j };
+        Canvas.fillCodel(ctx, pos, this.props.code[i][j]);
+      }
+    }
+  }
+
   updateCanvas(ctx, e, type) {
+    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+    ctx.beginPath();
     ctx.strokeStyle = 'black';
     this.drawGrid(ctx);
-    ctx.strokeStyle = colorCodes[this.props.color];
-    if (type === 'mount') {
-      for (let i = 0; i < this.props.size.height; ++i) {
-        for (let j = 0; j < this.props.size.width; ++j) {
-          const pos = { X: i, Y: j };
-          Canvas.fillCodel(ctx, pos, this.props.code[i][j]);
-        }
-      }
+    if (type === 'mount' || type === 'update') {
+      this.drawCurrentCanvas(ctx);
+      Canvas.pointCurrentCodel(ctx, this.props.current);
     }
     if (e) {
       if (type === 'down' || type === 'move') {
         const offsets = Canvas.getOffset(e);
         const pos = Canvas.getCodelOffset(offsets);
         this.updateCodel(pos);
-        Canvas.fillCodel(ctx, pos, this.props.color);
       }
     }
-    Canvas.pointCurrentCodel(ctx, this.props.current);
   }
 
   drawGrid(ctx) {

@@ -16,12 +16,12 @@ export default class CanvasComponent extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     if (this.props !== nextProps) {
-      this.updateCanvas();
+      this.updateCanvas('recieve');
     }
   }
 
   componentDidUpdate() {
-    this.updateCanvas();
+    this.updateCanvas('update');
   }
 
   updateCanvas(type) {
