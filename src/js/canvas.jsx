@@ -117,7 +117,6 @@ Canvas.propTypes = {
     height: React.PropTypes.number.isRequired,
   }),
   updateCodel: React.PropTypes.func.isRequired,
-  color: React.PropTypes.string.isRequired,
   code: React.PropTypes.arrayOf(
     React.PropTypes.arrayOf(React.PropTypes.string)
   ).isRequired,
