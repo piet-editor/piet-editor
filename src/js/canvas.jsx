@@ -22,6 +22,14 @@ export default class Canvas extends React.Component {
     };
   }
 
+  static fillCodel(ctx, pos, c) {
+    if (pos.X < 0 || pos.Y < 0) { return; }
+    const color = colorCodes[c];
+    const oneCodel = pixelRate + gridWidth;
+    ctx.fillStyle = color;
+    ctx.fillRect(pos.Y * oneCodel + gridWidth, pos.X * oneCodel + gridWidth, pixelRate, pixelRate);
+  }
+
   constructor(props) {
     super(props);
     this.state = {};
@@ -37,7 +45,7 @@ export default class Canvas extends React.Component {
       for (let i = 0; i < this.props.size.height; ++i) {
         for (let j = 0; j < this.props.size.width; ++j) {
           const pos = { X: i, Y: j };
-          this.fillCodel(ctx, pos, this.props.code[i][j]);
+          Canvas.fillCodel(ctx, pos, this.props.code[i][j]);
         }
       }
     }
@@ -46,7 +54,7 @@ export default class Canvas extends React.Component {
         const offsets = Canvas.getOffset(e);
         const pos = Canvas.getCodelOffset(offsets);
         this.updateCodel(pos);
-        this.fillCodel(ctx, pos, this.props.color);
+        Canvas.fillCodel(ctx, pos, this.props.color);
       }
     }
   }
@@ -67,14 +75,6 @@ export default class Canvas extends React.Component {
       width: this.props.size.width * pixelRate + (this.props.size.width + 1) * gridWidth,
       height: this.props.size.height * pixelRate + (this.props.size.height + 1) * gridWidth,
     };
-  }
-
-  fillCodel(ctx, pos, c) {
-    if (pos.X < 0 || pos.Y < 0) { return; }
-    const color = colorCodes[c];
-    const oneCodel = pixelRate + gridWidth;
-    ctx.fillStyle = color;
-    ctx.fillRect(pos.Y * oneCodel + gridWidth, pos.X * oneCodel + gridWidth, pixelRate, pixelRate);
   }
 
   updateCodel(pos) {
