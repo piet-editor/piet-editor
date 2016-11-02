@@ -27,6 +27,7 @@ export default class Editor extends React.Component {
       ),
       input: '',
       output: '',
+      current: { X: 0, Y: 0 },
     };
 
     this.onChangeSize = this.onChangeSize.bind(this);
@@ -34,6 +35,7 @@ export default class Editor extends React.Component {
     this.updateCodel = this.updateCodel.bind(this);
     this.updateInput = this.updateInput.bind(this);
     this.updateOutput = this.updateOutput.bind(this);
+    this.updateCurrent = this.updateCurrent.bind(this);
   }
 
   onChangeSize(s) {
@@ -64,6 +66,9 @@ export default class Editor extends React.Component {
   updateOutput(output) {
     this.setState({ output });
   }
+  updateCurrent(current) {
+    this.setState({ current });
+  }
 
   render() {
     return (
@@ -77,6 +82,7 @@ export default class Editor extends React.Component {
           size={this.state.size}
           updateCodel={this.updateCodel}
           color={this.state.selectedColor}
+          current={this.state.current}
           code={this.state.canvas}
         />
         <IO
@@ -86,6 +92,7 @@ export default class Editor extends React.Component {
         <Interpreter
           input={this.state.input}
           updateOutput={this.updateOutput}
+          updateCurrent={this.updateCurrent}
           code={this.state.canvas}
         />
         <Share

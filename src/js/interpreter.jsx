@@ -13,6 +13,10 @@ export default class Interpreter extends React.Component {
   }
 
   step() {
+    const newWorld = interpreter.next(this.state.world);
+    this.props.updateOutput(newWorld.env.output);
+    this.props.updateCurrent({ X: newWorld.env.x, Y: newWorld.env.y });
+    this.setState({ world: newWorld });
   }
 
   render() {
@@ -47,4 +51,5 @@ Interpreter.propTypes = {
   code: React.PropTypes.arrayOf(
     React.PropTypes.arrayOf(React.PropTypes.string)
   ).isRequired,
+  updateCurrent: React.PropTypes.func.isRequired,
 };

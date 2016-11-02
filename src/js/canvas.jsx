@@ -30,6 +30,15 @@ export default class Canvas extends React.Component {
     ctx.fillRect(pos.Y * oneCodel + gridWidth, pos.X * oneCodel + gridWidth, pixelRate, pixelRate);
   }
 
+  static pointCurrentCodel(ctx, pos) {
+    // ここも座標系が逆
+    const x = (pixelRate + gridWidth) * pos.Y + gridWidth + pixelRate / 2;
+    const y = (pixelRate + gridWidth) * pos.X + gridWidth + pixelRate / 2;
+    ctx.moveTo(x, y);
+    ctx.arc(x, y, pixelRate * 0.3, 0, Math.PI * 2, true);
+    ctx.fill();
+  }
+
   constructor(props) {
     super(props);
     this.state = {};
@@ -57,6 +66,7 @@ export default class Canvas extends React.Component {
         Canvas.fillCodel(ctx, pos, this.props.color);
       }
     }
+    Canvas.pointCurrentCodel(ctx, this.props.current);
   }
 
   drawGrid(ctx) {
@@ -106,4 +116,8 @@ Canvas.propTypes = {
   code: React.PropTypes.arrayOf(
     React.PropTypes.arrayOf(React.PropTypes.string)
   ).isRequired,
+  current: React.PropTypes.shape({
+    X: React.PropTypes.number.isRequired,
+    Y: React.PropTypes.number.isRequired,
+  }),
 };
