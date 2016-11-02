@@ -81,6 +81,7 @@ export default class Editor extends React.Component {
         <Canvas
           size={this.state.size}
           updateCodel={this.updateCodel}
+          color={this.state.selectedColor}
           current={this.state.current}
           code={this.state.canvas}
         />

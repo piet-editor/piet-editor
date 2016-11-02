@@ -57,11 +57,11 @@ export default class Canvas extends React.Component {
   }
 
   updateCanvas(ctx, e, type) {
-    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-    ctx.beginPath();
-    ctx.strokeStyle = 'black';
-    this.drawGrid(ctx);
     if (type === 'mount' || type === 'update') {
+      ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+      ctx.beginPath();
+      ctx.strokeStyle = 'black';
+      this.drawGrid(ctx);
       this.drawCurrentCanvas(ctx);
       Canvas.pointCurrentCodel(ctx, this.props.current);
     }
@@ -93,6 +93,7 @@ export default class Canvas extends React.Component {
   }
 
   updateCodel(pos) {
+    if (this.props.code[pos.X][pos.Y] === this.props.color) { return; }
     this.props.updateCodel(pos);
   }
 
@@ -112,6 +113,7 @@ export default class Canvas extends React.Component {
 }
 
 Canvas.propTypes = {
+  color: React.PropTypes.string.isRequired,
   size: React.PropTypes.shape({
     width: React.PropTypes.number.isRequired,
     height: React.PropTypes.number.isRequired,
