@@ -94,6 +94,7 @@ export default class Editor extends React.Component {
           updateOutput={this.updateOutput}
           updateCurrent={this.updateCurrent}
           code={this.state.canvas}
+          infinity={1000}
         />
         <Share
           size={this.state.size}

@@ -9,7 +9,24 @@ export default class Interpreter extends React.Component {
       pause: false,
       world: interpreter.create(this.props.code, this.props.input),
     };
+    this.reset = this.reset.bind(this);
     this.step = this.step.bind(this);
+    this.run = this.run.bind(this);
+  }
+
+  reset() {
+    this.props.updateOutput('');
+    this.props.updateCurrent({ X: 0, Y: 0 });
+    this.setState({ world: interpreter.create(this.props.code, this.props.input) });
+  }
+
+  run() {
+    for (let i = 0; i < this.props.infinity; ++i) {
+      this.step();
+      if (this.state.world.env.halt) {
+        break;
+      }
+    }
   }
 
   step() {
@@ -22,6 +39,11 @@ export default class Interpreter extends React.Component {
   render() {
     return (
       <div>
+        <button
+          onClick={this.reset}
+        >
+          reset
+        </button>
         <button
           onClick={this.run}
         >
@@ -52,4 +74,5 @@ Interpreter.propTypes = {
     React.PropTypes.arrayOf(React.PropTypes.string)
   ).isRequired,
   updateCurrent: React.PropTypes.func.isRequired,
+  infinity: React.PropTypes.number.isRequired,
 };
