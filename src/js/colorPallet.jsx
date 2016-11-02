@@ -9,7 +9,9 @@ const commandTable = [
 
 export default class ColorPallet extends React.Component {
   static commandLabel(i, commandBase) {
-    return ((i % 6 - commandBase % 6 + 6) % 6 + 6 * Math.floor( i / 6) + (3- Math.floor(commandBase/6)) * 6 + 18) % 18;
+    return ((i % 6 - commandBase % 6 + 6) % 6
+            + 6 * Math.floor(i / 6)
+            + (3 - Math.floor(commandBase / 6)) * 6 + 18) % 18;
   }
 
   constructor(props) {
