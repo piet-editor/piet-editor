@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Editor from './editor';
 import gzip from 'gzip-js';
 import base64 from 'base64-js';
+import Editor from './editor';
 
 const colorTable = {
   a: 'lred',
@@ -45,10 +45,10 @@ for (const h in hashs) {
 let code;
 try {
   code = gzip.unzip(base64.toByteArray(vals.code.replace(/_/g, '/').replace(/-/g, '+').replace(/@/g, '=')));
-  code = String.fromCharCode.apply("", new Uint16Array(code));
+  code = String.fromCharCode.apply('', new Uint16Array(code));
   code = code.split('|').map((row) => row.split('').map((v) => colorTable[v]));
 } catch (e) {
-  console.log(e)
+  console.warn(e);
 }
 
 document.addEventListener('DOMContentLoaded', () => {
