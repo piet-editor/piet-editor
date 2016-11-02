@@ -86,6 +86,7 @@ export default class Editor extends React.Component {
         <Interpreter
           input={this.state.input}
           updateOutput={this.updateOutput}
+          code={this.state.canvas}
         />
         <Share
           size={this.state.size}

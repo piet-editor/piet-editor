@@ -7,7 +7,12 @@ export default class Interpreter extends React.Component {
     super(props);
     this.state = {
       pause: false,
+      world: interpreter.create(this.props.code, this.props.input),
     };
+    this.step = this.step.bind(this);
+  }
+
+  step() {
   }
 
   render() {
