@@ -103,4 +103,7 @@ Canvas.propTypes = {
   }),
   updateCodel: React.PropTypes.func.isRequired,
   color: React.PropTypes.string.isRequired,
+  code: React.PropTypes.arrayOf(
+    React.PropTypes.arrayOf(React.PropTypes.string)
+  ).isRequired,
 };

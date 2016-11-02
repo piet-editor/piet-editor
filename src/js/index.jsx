@@ -30,11 +30,14 @@ const colorTable = {
 
 const hashs = location.hash.substring(1).split('&');
 const vals = {};
-for (let h in hashs) {
-  const t = hashs[h].split('=');
-  const k = t[0];
-  const v = t[1];
-  vals[k] = v;
+// eslint-disable-next-line no-restricted-syntax
+for (const h in hashs) {
+  if ({}.hasOwnProperty.call(hashs, h)) {
+    const t = hashs[h].split('=');
+    const k = t[0];
+    const v = t[1];
+    vals[k] = v;
+  }
 }
 
 const code = vals.code.split('|').map((row) => row.split('').map((v) => colorTable[v]));
