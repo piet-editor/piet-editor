@@ -28,8 +28,8 @@ export default class Editor extends React.Component {
       current: { X: 0, Y: 0 },
     };
     if (!this.state.canvas) {
-      this.state.canvas = Array(this.props.size.height);
-      for (let i = 0; i < this.props.size.height; ++i) {
+      this.state.canvas = Array(this.props.height);
+      for (let i = 0; i < this.props.height; ++i) {
         this.state.canvas[i] = Array(this.props.width).fill('white');
       }
     }
@@ -52,7 +52,7 @@ export default class Editor extends React.Component {
     this.setState({ size: s });
     if (s.width > this.state.size.width) {
       const diff = s.width - this.state.size.width;
-      let newCanvas = Editor.copyCanvas(this.state.canvas);
+      const newCanvas = Editor.copyCanvas(this.state.canvas);
       for (let i = 0; i < this.state.size.height; ++i) {
         for (let j = 0; j < diff; ++j) {
           newCanvas[i].push('white');
@@ -62,7 +62,7 @@ export default class Editor extends React.Component {
     }
     if (s.height > this.state.size.height) {
       const diff = s.height - this.state.size.height;
-      let newCanvas = Editor.copyCanvas(this.state.canvas);
+      const newCanvas = Editor.copyCanvas(this.state.canvas);
       for (let i = 0; i < diff; ++i) {
         newCanvas.push(Array(this.state.size.width).fill('white'));
       }

@@ -53,5 +53,10 @@ try {
 
 document.addEventListener('DOMContentLoaded', () => {
   const editor = document.getElementById('editor');
-  ReactDOM.render(<Editor code={code} width={parseInt(vals.width, 10)} height={parseInt(vals.height, 10)} />, editor);
+  ReactDOM.render(
+    <Editor
+      code={code}
+      width={parseInt(vals.width, 10)}
+      height={parseInt(vals.height, 10)}
+    />, editor);
 });
