@@ -1,5 +1,6 @@
 import React from 'react';
 import Export from './export';
+import Import from './import';
 
 const defaultCs = 10;
 
@@ -32,6 +33,10 @@ export default class ImportExport extends React.Component {
           size={this.props.size}
           code={this.props.code}
         />
+        <Import
+          cs={this.state.cs}
+          importCanvas={this.props.importCanvas}
+        />
       </div>
     );
   }
@@ -45,4 +50,5 @@ ImportExport.propTypes = {
   code: React.PropTypes.arrayOf(
     React.PropTypes.arrayOf(React.PropTypes.string)
   ).isRequired,
+  importCanvas: React.PropTypes.func.isRequired,
 };

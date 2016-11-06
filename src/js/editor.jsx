@@ -41,6 +41,7 @@ export default class Editor extends React.Component {
     this.updateInput = this.updateInput.bind(this);
     this.updateOutput = this.updateOutput.bind(this);
     this.updateCurrent = this.updateCurrent.bind(this);
+    this.importCanvas = this.importCanvas.bind(this);
   }
 
   onChangeSize(s) {
@@ -98,6 +99,13 @@ export default class Editor extends React.Component {
     this.setState({ current });
   }
 
+  importCanvas(canvas, size) {
+    this.setState({
+      canvas,
+      size,
+    })
+  }
+
   render() {
     return (
       <div>
@@ -131,6 +139,7 @@ export default class Editor extends React.Component {
         <ImportExport
           size={this.state.size}
           code={this.state.canvas}
+          importCanvas={this.importCanvas}
         />
         <div className='debug'>
           <div>width: {this.state.size.width}</div>
