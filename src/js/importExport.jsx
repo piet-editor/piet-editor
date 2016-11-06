@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { colorCodes } from './constants';
 
 const defaultCs = 10;
@@ -30,7 +29,7 @@ export default class ImportExport extends React.Component {
   }
 
   export() {
-    const canvas = ReactDOM.findDOMNode(this.refs.canvas);
+    const canvas = this.canvas;
     const ctx = canvas.getContext('2d');
     for (let i = 0; i < this.props.size.height; ++i) {
       for (let j = 0; j < this.props.size.width; ++j) {
@@ -40,7 +39,7 @@ export default class ImportExport extends React.Component {
     const image = canvas.toDataURL();
     this.setState({
       image,
-      showImage: true
+      showImage: true,
     });
   }
 
@@ -67,11 +66,12 @@ export default class ImportExport extends React.Component {
           this.state.showImage &&
           <img
             src={this.state.image}
+            alt='exported'
           />
         }
         <canvas
           style={{ display: 'none' }}
-          ref='canvas'
+          ref={(n) => (this.canvas = n)}
           width={size.width}
           height={size.height}
         />
@@ -81,4 +81,11 @@ export default class ImportExport extends React.Component {
 }
 
 ImportExport.propTypes = {
+  size: React.PropTypes.shape({
+    width: React.PropTypes.number.isRequired,
+    height: React.PropTypes.number.isRequired,
+  }),
+  code: React.PropTypes.arrayOf(
+    React.PropTypes.arrayOf(React.PropTypes.string)
+  ).isRequired,
 };
