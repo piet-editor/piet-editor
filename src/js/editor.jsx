@@ -103,7 +103,7 @@ export default class Editor extends React.Component {
     this.setState({
       canvas,
       size,
-    })
+    });
   }
 
   render() {
