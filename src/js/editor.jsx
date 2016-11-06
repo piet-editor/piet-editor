@@ -6,6 +6,7 @@ import Canvas from './canvas';
 import IO from './io';
 import Interpreter from './interpreter';
 import Share from './share';
+import ImportExport from './importExport';
 
 const confirm = window.confirm;
 
@@ -124,6 +125,10 @@ export default class Editor extends React.Component {
           infinity={1000}
         />
         <Share
+          size={this.state.size}
+          code={this.state.canvas}
+        />
+        <ImportExport
           size={this.state.size}
           code={this.state.canvas}
         />
