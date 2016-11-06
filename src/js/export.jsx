@@ -11,12 +11,7 @@ export default class Export extends React.Component {
       image: null,
     };
 
-    this.getSize = this.getSize.bind(this);
     this.export = this.export.bind(this);
-  }
-
-  onChangeCs(e) {
-    this.setState({ cs: parseInt(e.target.value, 10) || defaultCs });
   }
 
   getSize() {
