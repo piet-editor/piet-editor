@@ -49,41 +49,30 @@ export default class Editor extends React.Component {
         return;
       }
     }
-    this.setState({ size: s });
-    if (s.width > this.state.size.width) {
-      const diff = s.width - this.state.size.width;
-      const newCanvas = Editor.copyCanvas(this.state.canvas);
-      for (let i = 0; i < this.state.size.height; ++i) {
+    const oldSize = Object.assign({}, this.state.size);
+    let newCanvas = Editor.copyCanvas(this.state.canvas);
+    if (s.height >= oldSize.height) {
+      const diff = s.height - oldSize.height;
+      for (let i = 0; i < diff; ++i) {
+        newCanvas.push(Array(s.width).fill('white'));
+      }
+    } else {
+      newCanvas = newCanvas.slice(0, s.height);
+    }
+    if (s.width >= oldSize.width) {
+      const diff = s.width - oldSize.width;
+      for (let i = 0; i < s.height; ++i) {
         for (let j = 0; j < diff; ++j) {
           newCanvas[i].push('white');
         }
       }
-      this.setState({ canvas: newCanvas });
     } else {
-      const diff = this.state.size.width - s.width;
-      const newCanvas = Editor.copyCanvas(this.state.canvas);
-      for (let i = 0; i < this.state.size.height; ++i) {
-        for (let j = 0; j < diff; ++j) {
-          newCanvas[i].pop();
-        }
+      for (let i = 0; i < s.height; ++i) {
+        newCanvas[i] = newCanvas[i].slice(0, s.width);
       }
-      this.setState({ canvas: newCanvas });
     }
-    if (s.height > this.state.size.height) {
-      const diff = s.height - this.state.size.height;
-      const newCanvas = Editor.copyCanvas(this.state.canvas);
-      for (let i = 0; i < diff; ++i) {
-        newCanvas.push(Array(this.state.size.width).fill('white'));
-      }
-      this.setState({ canvas: newCanvas });
-    } else {
-      const diff = this.state.size.height - s.height;
-      const newCanvas = Editor.copyCanvas(this.state.canvas);
-      for (let i = 0; i < diff; ++i) {
-        newCanvas.pop();
-      }
-      this.setState({ canvas: newCanvas });
-    }
+    this.setState({ size: s });
+    this.setState({ canvas: newCanvas });
   }
 
   onChangeSelectedColor(c) {
