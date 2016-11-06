@@ -1,8 +1,6 @@
 import React from 'react';
 import { colorCodes } from './constants';
 
-const defaultCs = 10;
-
 export default class Export extends React.Component {
   constructor(props) {
     super(props);
