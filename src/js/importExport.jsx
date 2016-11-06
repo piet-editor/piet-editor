@@ -1,5 +1,4 @@
 import React from 'react';
-import { colorCodes } from './constants';
 import Export from './export';
 
 const defaultCs = 10;
