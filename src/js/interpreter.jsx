@@ -73,6 +73,7 @@ export default class Interpreter extends React.Component {
         {
           this.state.world.halt ? <div>halted</div> : null
         }
+        <div>{this.state.world.env.cmd}</div>
       </div>
     );
   }
