@@ -42,7 +42,7 @@
   "dependencies": {
     "base64-js": "^1.2.0",
     "gzip-js": "^0.3.2",
-    "piet-interpreter": "0.0.3",
+    "piet-interpreter": "0.0.4",
     "piet-loader-canvas": "0.0.4",
     "react": "^15.3.2",
     "react-dom": "^15.3.2"
