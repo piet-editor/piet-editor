@@ -19,7 +19,7 @@ export default class IO extends React.Component {
     return (
       <div>
         input: <textarea value={this.state.input} onChange={this.updateInput} />
-        optput: <textarea value={this.props.output} />
+        output: <textarea value={this.props.output} />
       </div>
     );
   }
