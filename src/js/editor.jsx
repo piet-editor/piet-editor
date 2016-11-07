@@ -27,6 +27,7 @@ export default class Editor extends React.Component {
       input: '',
       output: '',
       current: { X: 0, Y: 0 },
+      next: { X: -1, Y: -1 },
     };
     if (!this.state.canvas) {
       this.state.canvas = Array(this.state.size.height);
@@ -41,6 +42,7 @@ export default class Editor extends React.Component {
     this.updateInput = this.updateInput.bind(this);
     this.updateOutput = this.updateOutput.bind(this);
     this.updateCurrent = this.updateCurrent.bind(this);
+    this.updateNext = this.updateNext.bind(this);
     this.importCanvas = this.importCanvas.bind(this);
   }
 
@@ -98,6 +100,9 @@ export default class Editor extends React.Component {
   updateCurrent(current) {
     this.setState({ current });
   }
+  updateNext(next) {
+    this.setState({ next });
+  }
 
   importCanvas(canvas, size) {
     this.setState({
@@ -119,6 +124,7 @@ export default class Editor extends React.Component {
           updateCodel={this.updateCodel}
           color={this.state.selectedColor}
           current={this.state.current}
+          next={this.state.next}
           code={this.state.canvas}
         />
         <IO
@@ -129,6 +135,7 @@ export default class Editor extends React.Component {
           input={this.state.input}
           updateOutput={this.updateOutput}
           updateCurrent={this.updateCurrent}
+          updateNext={this.updateNext}
           code={this.state.canvas}
           infinity={1000}
         />
@@ -145,6 +152,8 @@ export default class Editor extends React.Component {
           <div>width: {this.state.size.width}</div>
           <div>height: {this.state.size.height}</div>
           <div>selected: {this.state.selectedColor}</div>
+          <div>current: {JSON.stringify(this.state.current)}</div>
+          <div>next: {JSON.stringify(this.state.next)}</div>
           <div>canvas: {JSON.stringify(this.state.canvas)}</div>
         </div>
       </div>

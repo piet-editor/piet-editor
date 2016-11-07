@@ -7,7 +7,7 @@ export default class Interpreter extends React.Component {
     super(props);
     this.state = {
       pause: false,
-      world: interpreter.create(this.props.code, this.props.input),
+      world: interpreter.create(this.props.code, this.props.input, true),
     };
     this.reset = this.reset.bind(this);
     this.step = this.step.bind(this);
@@ -23,7 +23,8 @@ export default class Interpreter extends React.Component {
   reset() {
     this.props.updateOutput('');
     this.props.updateCurrent({ X: 0, Y: 0 });
-    this.setState({ world: interpreter.create(this.props.code, this.props.input) });
+    this.props.updateNext({ X: -1, Y: -1 });
+    this.setState({ world: interpreter.create(this.props.code, this.props.input, true) });
   }
 
   run() {
@@ -39,6 +40,7 @@ export default class Interpreter extends React.Component {
     const newWorld = interpreter.next(this.state.world);
     this.props.updateOutput(newWorld.env.output);
     this.props.updateCurrent({ X: newWorld.env.x, Y: newWorld.env.y });
+    this.props.updateNext({ X: newWorld.env.nextCodel.x, Y: newWorld.env.nextCodel.y });
     this.setState({ world: newWorld });
   }
 
@@ -74,6 +76,7 @@ export default class Interpreter extends React.Component {
           this.state.world.halt ? <div>halted</div> : null
         }
         <div>{this.state.world.env.cmd}</div>
+        <div>{JSON.stringify(this.state.world.env.nextCodel)}</div>
       </div>
     );
   }
@@ -86,5 +89,6 @@ Interpreter.propTypes = {
     React.PropTypes.arrayOf(React.PropTypes.string)
   ).isRequired,
   updateCurrent: React.PropTypes.func.isRequired,
+  updateNext: React.PropTypes.func.isRequired,
   infinity: React.PropTypes.number.isRequired,
 };

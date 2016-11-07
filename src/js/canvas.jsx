@@ -35,8 +35,27 @@ export default class Canvas extends React.Component {
     // ここも座標系が逆
     const x = (pixelRate + gridWidth) * pos.Y + gridWidth + pixelRate / 2;
     const y = (pixelRate + gridWidth) * pos.X + gridWidth + pixelRate / 2;
+    ctx.beginPath();
     ctx.moveTo(x, y);
     ctx.arc(x, y, pixelRate * 0.3, 0, Math.PI * 2, true);
+    ctx.closePath();
+    ctx.fill();
+  }
+
+  static pointNextCodel(ctx, pos, size) {
+    if (pos.X < 0 || pos.X > size.height ||
+        pos.Y < 0 || pos.Y > size.width) {
+      // 外にはみ出してる。
+      return;
+    }
+    ctx.fillStyle = '#dedede';
+    // ここも座標系が逆
+    const x = (pixelRate + gridWidth) * pos.Y + gridWidth + pixelRate / 2;
+    const y = (pixelRate + gridWidth) * pos.X + gridWidth + pixelRate / 2;
+    ctx.beginPath();
+    ctx.moveTo(x, y);
+    ctx.arc(x, y, pixelRate * 0.3, 0, Math.PI * 2, true);
+    ctx.closePath();
     ctx.fill();
   }
 
@@ -64,6 +83,7 @@ export default class Canvas extends React.Component {
       this.drawGrid(ctx);
       this.drawCurrentCanvas(ctx);
       Canvas.pointCurrentCodel(ctx, this.props.current);
+      Canvas.pointNextCodel(ctx, this.props.next, this.props.size);
     }
     if (e) {
       if (type === 'down' || type === 'move') {
@@ -125,5 +145,9 @@ Canvas.propTypes = {
   current: React.PropTypes.shape({
     X: React.PropTypes.number.isRequired,
     Y: React.PropTypes.number.isRequired,
-  }),
+  }).isRequired,
+  next: React.PropTypes.shape({
+    X: React.PropTypes.number.isRequired,
+    Y: React.PropTypes.number.isRequired,
+  }).isRequired,
 };
