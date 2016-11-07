@@ -14,6 +14,12 @@ export default class Interpreter extends React.Component {
     this.run = this.run.bind(this);
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (this.props.code !== nextProps.code) {
+      this.reset();
+    }
+  }
+
   reset() {
     this.props.updateOutput('');
     this.props.updateCurrent({ X: 0, Y: 0 });
