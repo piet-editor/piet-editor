@@ -76,6 +76,8 @@ export default class Interpreter extends React.Component {
           this.state.world.halt ? <div>halted</div> : null
         }
         <div>{this.state.world.env.cmd}</div>
+        <div>cc: {this.state.world.env.cc}</div>
+        <div>dp: {this.state.world.env.dp}</div>
         <div>{JSON.stringify(this.state.world.env.nextCodel)}</div>
       </div>
     );
